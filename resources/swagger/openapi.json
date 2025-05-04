@@ -1,0 +1,29 @@
+{
+    "openapi": "3.0.4",
+    "info": {
+        "title": "Laravel Swagger",
+        "description": "Laravel Swagger",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://eindwerk.ddev.site:8445/"
+        }
+    ],
+    "paths": {
+        "/api/users": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Users",
+                "description": "Get all users",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {}
+}
