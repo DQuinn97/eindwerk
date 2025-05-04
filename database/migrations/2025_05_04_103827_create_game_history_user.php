@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\GameHistory;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_types', function (Blueprint $table) {
+        Schema::create('game_history_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->int('playerMin')->default(2);
-            $table->int('playerMax')->default(4);
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(GameHistory::class)->constrained()->cascadeOnDelete();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_types');
+        Schema::dropIfExists('game_history_user');
     }
 };

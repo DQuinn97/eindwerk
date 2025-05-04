@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_types', function (Blueprint $table) {
+        Schema::create('game_lobby_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->int('playerMin')->default(2);
-            $table->int('playerMax')->default(4);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_types');
+        Schema::dropIfExists('game_lobby_histories');
     }
 };

@@ -9,4 +9,9 @@ class GameType extends Model
 {
     /** @use HasFactory<\Database\Factories\GameTypeFactory> */
     use HasFactory;
+
+    public function gameHistories()
+    {
+        return $this->hasMany(GameHistory::class);
+    }
 }

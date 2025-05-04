@@ -64,4 +64,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function gameHistories()
+    {
+        return $this->belongsToMany(GameHistory::class);
+    }
+    public function gameLobbyHistories()
+    {
+        return $this->belongsToMany(GameLobbyHistory::class);
+    }
 }
