@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->int('playerMin')->default(2);
-            $table->int('playerMax')->default(4);
+            $table->integer('playerMin')->default(2);
+            $table->integer('playerMax')->default(4);
         });
     }
 
