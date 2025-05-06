@@ -13,7 +13,7 @@ class GameHistoryController extends Controller
      */
     public function index()
     {
-        //
+        return "testing route";
     }
 
     /**
