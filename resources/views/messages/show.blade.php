@@ -22,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($messages as $message)
+ 
                                 <tr>
                                     <td>{{ $message->user_id}}</td>
                                     <td>{{ $message->message }}</td>
@@ -39,7 +39,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                     
                         </tbody>
                     </table>
                 </div>

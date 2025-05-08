@@ -31,8 +31,10 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        Message::create($request->validated());
-        return redirect()->route('messages.index');
+        $data = $request->validated();
+        $data['user_id'] = $request->user()->id;
+        Message::create($data);
+        return redirect('/messages');
     }
 
     /**
@@ -40,7 +42,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        return view('messages.show', compact('message'));
     }
 
     /**
