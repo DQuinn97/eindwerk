@@ -8,5 +8,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-Route::resource('game-lobby-histories', GameLobbyHistoryController::class);
 Route::resource('game-histories', GameHistoryController::class);
