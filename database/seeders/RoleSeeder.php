@@ -12,6 +12,10 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+       $roles = [
+            ['name' => 'Admin', 'permissions' => 1],
+            ['name' => 'User', 'permissions' => 0],
+        ];
+        \App\Models\Role::insert($roles);
     }
 }
