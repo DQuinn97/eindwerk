@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthGates;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,7 +17,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('messages', App\Http\Controllers\MessageController::class);
-    Route::group(['middleware'=>['auth']], function(){
+    Route::group(['middleware'=>['auth', AuthGates::class]], function () {
         Route::resource('users', App\Http\Controllers\UserController::class);
     });
 });
