@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GameLobbyHistory;
+use App\Models\Chatlog;
 use Illuminate\Http\Request;
 
-class GameLobbyHistoryController extends Controller
+class ChatlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class GameLobbyHistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GameLobbyHistory $gameLobbyHistory)
+    public function show(Chatlog $chatlog)
     {
         //
     }
@@ -42,7 +42,7 @@ class GameLobbyHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GameLobbyHistory $gameLobbyHistory)
+    public function edit(Chatlog $chatlog)
     {
         //
     }
@@ -50,7 +50,7 @@ class GameLobbyHistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GameLobbyHistory $gameLobbyHistory)
+    public function update(Request $request, Chatlog $chatlog)
     {
         //
     }
@@ -58,7 +58,7 @@ class GameLobbyHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GameLobbyHistory $gameLobbyHistory)
+    public function destroy(Chatlog $chatlog)
     {
         //
     }

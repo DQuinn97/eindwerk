@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\GameLobbyHistory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('game_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(GameLobbyHistory::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(GameType::class)->nullable()->constrained()->nullOnDelete();
             $table->json('steps')->nullable();
             $table->json('scores')->nullable();
