@@ -17,7 +17,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('messages', App\Http\Controllers\MessageController::class);
-    Route::group(['middleware'=>['auth', AuthGates::class]], function () {
+    Route::group(['middleware'=>['auth']], function () {
         Route::resource('users', App\Http\Controllers\UserController::class);
     });
 });
