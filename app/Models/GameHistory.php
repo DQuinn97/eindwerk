@@ -24,4 +24,5 @@ class GameHistory extends Model
     {
         return $this->belongsTo(GameType::class);
     }
+    protected $table ='public.game_histories';
 }

@@ -16,4 +16,5 @@ class Permission extends Model
     public function roles(): BelongsToMany{
         return $this->belongsToMany(Role::class);
     }
+    protected $table = 'public.permissions';
 }

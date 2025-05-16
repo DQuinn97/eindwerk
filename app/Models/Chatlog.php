@@ -11,4 +11,5 @@ class Chatlog extends Model
     {
         return $this->hasMany(Message::class);
     }
+    protected $table ='public.chatlogs';
 }

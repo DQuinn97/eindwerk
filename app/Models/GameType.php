@@ -15,4 +15,5 @@ class GameType extends Model
     {
         return $this->hasMany(GameHistory::class);
     }
+    protected $table ='public.game_types';
 }
