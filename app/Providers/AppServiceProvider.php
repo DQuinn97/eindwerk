@@ -22,17 +22,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $hasPermissionTable = Schema::hasTable('connections');
-        $hasUserTable = Schema::hasTable('users');
-        $hasRoleTable = Schema::hasTable('roles');
-        $hasPermissionRoleTable = Schema::hasTable('permission_role');
+        // $hasPermissionTable = Schema::hasTable('connections');
+        // $hasUserTable = Schema::hasTable('users');
+        // $hasRoleTable = Schema::hasTable('roles');
+        // $hasPermissionRoleTable = Schema::hasTable('permission_role');
 
-        if ($hasPermissionTable && $hasUserTable && $hasRoleTable && $hasPermissionRoleTable) {
-            Permission::all()->each(function ($permission) {
-                Gate::define($permission->name, function ($user) use ($permission) {
-                    return $user->hasPermissionTo($permission->name);
-                });
-            });
-        }
+        // if ($hasPermissionTable && $hasUserTable && $hasRoleTable && $hasPermissionRoleTable) {
+        //     Permission::all()->each(function ($permission) {
+        //         Gate::define($permission->name, function ($user) use ($permission) {
+        //             return $user->hasPermissionTo($permission->name);
+        //         });
+        //     });
+        // }
     }
 }
