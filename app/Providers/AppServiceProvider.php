@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Permission;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,10 +22,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Permission::all()->each(function ($permission) {
-        //     Gate::define($permission->name, function ($user) use ($permission) {
-        //         return $user->hasPermissionTo($permission->name);
-        //     });
-        // });
+        $hasPermissionTable = Schema::hasTable('public.connections');
+        $hasUserTable = Schema::hasTable('public.users');
+        $hasRoleTable = Schema::hasTable('public.roles');
+        $hasPermissionRoleTable = Schema::hasTable('public.permission_role');
+
+        if ($hasPermissionTable && $hasUserTable && $hasRoleTable && $hasPermissionRoleTable) {
+            Permission::all()->each(function ($permission) {
+                Gate::define($permission->name, function ($user) use ($permission) {
+                    return $user->hasPermissionTo($permission->name);
+                });
+            });
+        }
     }
 }
