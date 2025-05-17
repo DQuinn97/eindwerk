@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Permission;
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -20,8 +21,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
+        if (env('APP_ENV') !== 'local') {
+            $url->forceScheme('https');
+        }
         // $hasPermissionTable = Schema::hasTable('connections');
         // $hasUserTable = Schema::hasTable('users');
         // $hasRoleTable = Schema::hasTable('roles');
