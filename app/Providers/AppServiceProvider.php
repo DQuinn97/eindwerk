@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $hasPermissionTable = Schema::hasTable('public.connections');
-        $hasUserTable = Schema::hasTable('public.users');
-        $hasRoleTable = Schema::hasTable('public.roles');
-        $hasPermissionRoleTable = Schema::hasTable('public.permission_role');
+        $hasPermissionTable = Schema::hasTable('connections');
+        $hasUserTable = Schema::hasTable('users');
+        $hasRoleTable = Schema::hasTable('roles');
+        $hasPermissionRoleTable = Schema::hasTable('permission_role');
 
         if ($hasPermissionTable && $hasUserTable && $hasRoleTable && $hasPermissionRoleTable) {
             Permission::all()->each(function ($permission) {
