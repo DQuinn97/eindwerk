@@ -22,5 +22,5 @@ class Role extends Model
     {
         return $this->belongsToMany(Permission::class);
     }
-    protected $table = 'public.roles';
+    // protected $table = 'public.roles';
 }

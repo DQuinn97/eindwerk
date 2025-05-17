@@ -83,5 +83,5 @@ class User extends Authenticatable
         $role = $this->role;
         return $role->permissions->contains('name', $permission);
     }
-  protected $table = 'public.users';
+//   protected $table = 'public.users';
 }
