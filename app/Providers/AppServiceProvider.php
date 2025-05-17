@@ -21,10 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Permission::all()->each(function ($permission) {
-            Gate::define($permission->name, function ($user) use ($permission) {
-                return $user->hasPermissionTo($permission->name);
-            });
-        });
+        // Permission::all()->each(function ($permission) {
+        //     Gate::define($permission->name, function ($user) use ($permission) {
+        //         return $user->hasPermissionTo($permission->name);
+        //     });
+        // });
     }
 }
