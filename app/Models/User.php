@@ -6,6 +6,7 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -74,11 +75,17 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsToMany(GameHistory::class);
     }
-    public function role(): HasOne
+    public function role(): BelongsTo
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
-  
+
+    public function hasPermissionTo(string $permission): bool
+    {
+        $role = $this->role;
+        return $role->permissions->contains('name', $permission);
+    }
+//   protected $table = 'public.users';
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->role->name === 'admin';

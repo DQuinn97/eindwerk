@@ -25,4 +25,5 @@ class Message extends Model
     {
         return $this->belongsTo(Chatlog::class);
     }
+    // protected $table = 'public.messages';
 }

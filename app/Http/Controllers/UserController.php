@@ -13,11 +13,18 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN,'403 Forbidden');
-        $users = User::with('role')->get();
-        return view('users.index', compact('users'));
+        $role_filter = $request->query('role');
+        abort_if(Gate::denies('manage_users'), Response::HTTP_FORBIDDEN,'403 Forbidden');
+        $users = User::with('role')->get()->filter(function($user ) use ($role_filter) {
+            if (!$role_filter) {
+                return true;
+            }
+            return $user->role->id == $role_filter;
+        });
+        $roles = Role::all();
+        return view('users.index', compact('users', 'roles', 'role_filter'), );
     }
 
     /**
@@ -25,9 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN,'403 Forbidden');
-        $role = Role::pluck('name','id')[0];
-        return view('users.create', compact('role'));
+        abort_if(Gate::denies('manage_users'), Response::HTTP_FORBIDDEN,'403 Forbidden');
+        $roles = Role::get();
+        return view('users.create', compact('roles'));
 
     }
 
@@ -48,7 +55,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN,'403 Forbidden');
+        abort_if(Gate::denies('manage_users'), Response::HTTP_FORBIDDEN,'403 Forbidden');
         return view('users.show', compact('user'));
     }
 
@@ -57,10 +64,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN,'403 Forbidden');
-        $role = Role::pluck('name','id')[0];
+        abort_if(Gate::denies('manage_users'), Response::HTTP_FORBIDDEN,'403 Forbidden');
+        $roles = Role::get();
         $user->load('role');
-        return view('users.edit', compact('user', 'role'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -78,7 +85,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN,'403 Forbidden');
+        abort_if(Gate::denies('manage_users'), Response::HTTP_FORBIDDEN,'403 Forbidden');
         $user->delete();
         return redirect()->route('users.index');
     }
