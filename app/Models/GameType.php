@@ -11,6 +11,7 @@ class GameType extends Model
     /** @use HasFactory<\Database\Factories\GameTypeFactory> */
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'playerMin', 'playerMax'];
     public function gameHistories():HasMany
     {
         return $this->hasMany(GameHistory::class);

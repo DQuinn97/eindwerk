@@ -26,17 +26,14 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') !== 'local') {
             $url->forceScheme('https');
         }
-        // $hasPermissionTable = Schema::hasTable('connections');
-        // $hasUserTable = Schema::hasTable('users');
-        // $hasRoleTable = Schema::hasTable('roles');
-        // $hasPermissionRoleTable = Schema::hasTable('permission_role');
+        
 
-        // if ($hasPermissionTable && $hasUserTable && $hasRoleTable && $hasPermissionRoleTable) {
-        //     Permission::all()->each(function ($permission) {
-        //         Gate::define($permission->name, function ($user) use ($permission) {
-        //             return $user->hasPermissionTo($permission->name);
-        //         });
-        //     });
-        // }
+        Gate::define('admin', function ($user) {
+            return $user->role()->name === 'admin';
+        });
+        Gate::define('mod', function ($user) {
+            return $user->role()->name === 'mod' || $user->role()->name === 'admin';
+        });
+          
     }
 }
